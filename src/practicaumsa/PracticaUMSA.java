@@ -5,6 +5,7 @@
  */
 package practicaumsa;
 
+import java.util.Arrays;
 import librerias.LeerDato;
 
 /**
@@ -242,12 +243,253 @@ public class PracticaUMSA {
         } while (numero >= 0);
     }
 
+    public static void ejercicio_once() {
+        int conjunto[];
+        int n, mayorNegativo, contador;
+        System.out.print("Ingrese el tamaño del vector: ");
+        n = LeerDato.entero();
+        conjunto = new int[n];
+        for (int i = 0; i < n; i++) {
+            System.out.print("Dato " + (i + 1) + ": ");
+            conjunto[i] = LeerDato.entero();
+        }
+        int j = 0;
+        do {
+            mayorNegativo = conjunto[j];
+            j += 1;
+        } while (mayorNegativo > -1);
+        contador = 0;
+        for (int i = 0; i < n; i++) {
+            if (conjunto[i] < 0) {
+                if (conjunto[i] > mayorNegativo) {
+                    mayorNegativo = conjunto[i];
+                } else if (conjunto[i] == mayorNegativo) {
+                    contador += 1;
+                }
+            }
+        }
+        System.out.println("El numero mayor negativo es " + mayorNegativo + " que se repite " + contador);
+    }
+
+    public static void ejercicio_doce() {
+        int numero, n, max = 0, min = 0;
+        System.out.print("Ingrese el tamaño del vector: ");
+        n = LeerDato.entero();
+        for (int i = 0; i < n; i++) {
+            System.out.print("Dato " + (i + 1) + ": ");
+            numero = LeerDato.entero();
+            if (min != 0 && max != 0) {
+                if (numero > max) {
+                    max = numero;
+                }
+                if (numero < min) {
+                    min = numero;
+                }
+            } else {
+                min = numero;
+                max = numero;
+            }
+        }
+        System.out.println("El maximo es " + max + " y el minimo es " + min);
+    }
+
+    public static void ejercicio_trece() {
+        int a, b, c, multiplicacion = 0;
+        do {
+            System.out.print("Ingrese valor para A(mayor a cero): ");
+            a = LeerDato.entero();
+        } while (a < 1);
+        do {
+            System.out.print("Ingrese valor para B(mayor a cero): ");
+            b = LeerDato.entero();
+        } while (b < 1);
+        do {
+            System.out.print("Ingrese valor para C(mayor a cero): ");
+            c = LeerDato.entero();
+        } while (c < 1);
+        for (int i = 0; i < b; i++) {
+            multiplicacion += a;
+        }
+        a = multiplicacion;
+        multiplicacion = 0;
+        for (int i = 0; i < c; i++) {
+            multiplicacion += a;
+        }
+        System.out.println("El resultado de la multiplicacion mediante sumas sucesivas es " + multiplicacion);
+    }
+
+    public static void ejercicio_catorce() {
+        int numero, posicion;
+        System.out.print("Ingrese un valor numerico: ");
+        numero = LeerDato.entero();
+        System.out.print("Ingrese un valor para la posicion: ");
+        posicion = LeerDato.entero();
+        char aux[] = String.valueOf(numero).toCharArray();
+        System.out.println("Valor: " + numero);
+        System.out.println("Posición: " + posicion);
+        System.out.println("Resultado: " + aux[aux.length - posicion]);
+    }
+
+    public static void ejercicio_quince() {
+        int numero, acumulador = 0;
+        System.out.print("Ingrese un numero entero: ");
+        numero = LeerDato.entero();
+        do {
+            String aux = String.valueOf(numero);
+            for (int i = 0; i < aux.length(); i++) {
+                acumulador += Integer.parseInt(aux.substring(i, i + 1));
+            }
+            numero = acumulador;
+            acumulador = 0;
+        } while (numero < 1 || numero > 9);
+        System.out.println("El resultado es " + numero);
+    }
+
+    public static void ejercicio_dieciseis() {
+        int n;
+        System.out.print("Ingrese un tamaño para la serie: ");
+        n = LeerDato.entero();
+        for (int i = 1, x = 1; i <= n; i++) {
+            if (i % 2 == 0) {
+                System.out.print(x * -1);
+                x++;
+            } else {
+                System.out.print(x);
+            }
+            if (i != n) {
+                System.out.print(" , ");
+            }
+        }
+        System.out.println("");
+    }
+
+    public static void ejercicio_diecisiete() {
+        System.out.print("Ingrese un tamaño: ");
+        int num = LeerDato.entero();
+        for (int i = 0; i < num; i++) {
+            for (int j = 0; j < num; j++) {
+                System.out.print(i + 1);
+            }
+            System.out.println("");
+        }
+    }
+
+    public static void ejercicio_dieciocho() {
+        int tamanio;
+        do {
+            System.out.print("Ingrese un valor entre 1 y 20: ");
+            tamanio = LeerDato.entero();
+        } while (tamanio < 1 || tamanio > 20);
+        for (int i = 0; i < tamanio; i++) {
+            for (int j = 0; j < tamanio; j++) {
+                if (i == j) {
+                    System.out.print("- ");
+                } else if (j > i) {
+                    System.out.print("+ ");
+                } else {
+                    System.out.print("* ");
+                }
+            }
+            System.out.println("");
+        }
+    }
+
+    public static void ejercicio_diecinueve() {
+        int n, aux, max;
+        System.out.print("Ingrese un tamaño para el vector: ");
+        n = LeerDato.entero();
+        int vector[] = new int[n];
+        for (int i = 0; i < n; i++) {
+            System.out.print("Dato " + (i + 1) + ": ");
+            vector[i] = LeerDato.entero();
+        }
+        for (int i = 0; i < vector.length - 1; i++) {
+            max = i;
+
+            //buscamos el mayor número
+            for (int j = i + 1; j < vector.length; j++) {
+                if (vector[j] > vector[max]) {
+                    max = j;    //encontramos el mayor número
+                }
+            }
+
+            if (i != max) {
+                aux = vector[i];
+                vector[i] = vector[max];
+                vector[max] = aux;
+            }
+        }
+        System.out.println(Arrays.toString(vector));
+    }
+
+    public static void ejercicio_veinte() {
+        int a[] = {3, 4, 1, 4, 2}, b[] = {22, 5, 16, 8, 10};
+        String c = "";
+        for (int i = 0; i < a.length - 1; i++) {
+            int min = i;
+            for (int j = i + 1; j < a.length; j++) {
+                if (a[j] < a[min]) {
+                    min = j;
+                }
+            }
+            if (i != min) {
+                int aux = a[i];
+                a[i] = a[min];
+                a[min] = aux;
+            }
+        }
+        for (int i = 0; i < b.length - 1; i++) {
+            int min = i;
+            for (int j = i + 1; j < b.length; j++) {
+                if (b[j] < b[min]) {
+                    min = j;
+                }
+            }
+            if (i != min) {
+                int aux = b[i];
+                b[i] = b[min];
+                b[min] = aux;
+            }
+        }
+
+        for (int i = 0; i < a.length; i++) {
+            if (c.indexOf(String.valueOf(a[i])) == -1) {
+                c += a[i];
+                c += ",";
+            }
+            if (c.indexOf(String.valueOf(b[i])) == -1) {
+                c += b[i];
+            }
+            if (i != a.length - 1) {
+                c += ",";
+            }
+        }
+
+        System.out.println(Arrays.toString(a));
+        System.out.println(Arrays.toString(b));
+        String aux[] = c.split(",");
+        for (int i = 0; i < aux.length - 1; i++) {
+            int min = i;
+            for (int j = i + 1; j < aux.length; j++) {
+                if (Integer.parseInt(aux[j]) < Integer.parseInt(aux[min])) {
+                    min = j;
+                }
+            }
+            if (i != min) {
+                String aux1 = aux[i];
+                aux[i] = aux[min];
+                aux[min] = aux1;
+            }
+        }
+        System.out.println(Arrays.toString(aux));
+    }
+
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        ejercicio_diez();
+        ejercicio_diecisiete();
     }
 
 }
